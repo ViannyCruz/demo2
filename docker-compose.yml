@@ -41,6 +41,8 @@ services:
       - "80:80"
     volumes:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+      - /etc/haproxy/certs/cvdev.lat.pem:/etc/haproxy/certs/cvdev.lat.pem
+
     depends_on:
       - app1
       - app2
