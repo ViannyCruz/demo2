@@ -1,0 +1,44 @@
+version: '3.8'  # Puedes usar una versión más reciente si es necesario
+services:
+  app1:
+    image: demo2
+    command: "java -jar app.jar --server.port=8081"
+    ports:
+      - "8081:8081"
+    environment:
+      - instance.id=app1
+      - server.port=8081
+
+  app2:
+    image: demo2
+    command: "java -jar app.jar --server.port=8082"
+    ports:
+      - "8082:8082"
+    environment:
+      - instance.id=app2
+      - server.port=8082
+
+  app3:
+    image: demo2
+    command: "java -jar app.jar --server.port=8083"
+    ports:
+      - "8083:8083"
+    environment:
+      - instance.id=app3
+      - server.port=8083
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  haproxy:
+    image: haproxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - app1
+      - app2
+      - app3

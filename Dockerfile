@@ -1,4 +1,8 @@
-FROM ubuntu:latest
-LABEL authors="VMCC0001"
+FROM gradle:8.5-jdk21 AS build
+WORKDIR /app
 
-ENTRYPOINT ["top", "-b"]
+COPY target/*.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
