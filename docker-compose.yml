@@ -1,6 +1,7 @@
 version: '3.8'  # Puedes usar una versión más reciente si es necesario
 services:
   app1:
+    build: .
     image: demo2
     command: ["java", "-jar", "app.jar", "--server.port=8081"]
     ports:
@@ -10,6 +11,7 @@ services:
       - server.port=8081
 
   app2:
+    build: .
     image: demo2
     command: ["java", "-jar", "app.jar", "--server.port=8082"]
     ports:
@@ -19,6 +21,7 @@ services:
       - server.port=8082
 
   app3:
+    build: .
     image: demo2
     command: ["java", "-jar", "app.jar", "--server.port=8083"]
     ports:
